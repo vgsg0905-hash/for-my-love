@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Animated Background Elements -->
+    <div class="floating-hearts">
+        <div class="heart">❤</div><div class="heart">❤</div>
+        <div class="heart">❤</div><div class="heart">❤</div>
+        <div class="heart">❤</div><div class="heart">❤</div>
+        <div class="heart">❤</div><div class="heart">❤</div>
+    </div>
+
+    <div class="side-stickers left-stickers">
+        <div class="sticker pop-delay-1">💖</div>
+        <div class="sticker pop-delay-3">🌸</div>
+        <div class="sticker pop-delay-5">✨</div>
+        <div class="sticker pop-delay-2">🦋</div>
+    </div>
+    
+    <div class="side-stickers right-stickers">
+        <div class="sticker pop-delay-4">✨</div>
+        <div class="sticker pop-delay-2">💕</div>
+        <div class="sticker pop-delay-6">🌷</div>
+        <div class="sticker pop-delay-1">💖</div>
+    </div>
+
+    <header class="fade-in delay-1">
+        <h1>To My Chota Baccha <span class="pulse-heart">❤</span></h1>
+        <p class="subtitle">A little corner of the internet just for us.</p>
+    </header>
+
+    <main class="gallery-container">
+        <div class="memory-card glass-panel fade-in delay-2">
+            <div class="image-wrapper">
+                <img src="images/1.jpeg" alt="A lovely memory of us">
+            </div>
+            <div class="card-content">
+                <p>That amazing day we spent together. Your smile here means everything.</p>
+            </div>
+        </div>
+
+        <div class="memory-card glass-panel fade-in delay-3">
+            <div class="image-wrapper">
+                <img src="images/pic2.jpeg" alt="Another wonderful memory">
+            </div>
+            <div class="card-content">
+                <p>Hyee Kitni Pyari Laggri hai Meri choti Baby 😘</p>
+            </div>
+        </div>
+
+        <div class="memory-card glass-panel fade-in delay-4">
+            <div class="image-wrapper">
+                <img src="images/pic3.jpeg" alt="A beautiful moment">
+            </div>
+            <div class="card-content">
+                <p>One of my absolute favorite pictures of you. You light up my world.</p>
+            </div>
+        </div>
+
+        <div class="memory-card glass-panel fade-in delay-5">
+            <div class="image-wrapper">
+                <img src="images/pic4.jpeg" alt="Adventures together">
+            </div>
+            <div class="card-content">
+                <p>Every adventure with you is my favorite adventure. Can't wait for more.</p>
+            </div>
+        </div>
+
+        <div class="memory-card glass-panel fade-in delay-6">
+            <div class="image-wrapper">
+                <img src="images/pic5.jpg" alt="Just us">
+            </div>
+            <div class="card-content">
+                <p>Mann Krta Hai in Gore Gore galo Parr Kissi kr du 💋💋😁</p>
+            </div>
+        </div>
+    </main>
+
+    <div class="divider fade-in delay-7">❦</div>
+
+    <section class="love-message-section fade-in delay-7">
+        <div class="message-box glass-panel">
+            <p>
+                Every time I look at these pictures, I am reminded of how incredibly lucky I am to have you in my life. You are my greatest adventure, my safe place, and my favorite reason to smile. Thank you for filling my days with so much warmth, laughter, and joy. I promise to keep making beautiful memories with you, today and always. I love you!
+            </p>
+        </div>
+    </section>
+
+    <div class="divider fade-in delay-8">❦</div>
+
+    <!-- SURPRISE BOX SECTION -->
+    <section class="surprise-section fade-in delay-8">
+        <h2>A Little Surprise...</h2>
+        
+        <div class="surprise-box glass-panel" id="surprise-box">
+            <div class="box-cover" id="box-cover">
+                <div class="gift-icon pulse-heart">🎁</div>
+                <p>Tap to open your surprise!</p>
+            </div>
+            
+            <div class="hidden-audios" id="hidden-audios">
+                <h3>Voice Notes Just For You</h3>
+                <p class="audio-subtitle">Listen whenever you miss me.</p>
+                
+                <div class="audio-item">
+                    <p>My Feelings for Pyara Baccha ❤</p>
+                    <button class="play-btn multi-play" data-target="audio1">▶</button>
+                    <audio id="audio1" src="audio/1.mp3"></audio>
+                </div>
+
+                <div class="audio-item">
+                    <p>A random thought about us ❤️</p>
+                    <button class="play-btn multi-play" data-target="audio2">▶</button>
+                    <audio id="audio2" src="audio/2.mp3"></audio>
+                </div>
+
+                <div class="audio-item">
+                    <p>Mera chota Suar 💕</p>
+                    <button class="play-btn multi-play" data-target="audio3">▶</button>
+                    <audio id="audio3" src="audio/3.mp3"></audio>
+                </div>
+
+                <div class="audio-item">
+                    <p>I Love You So Much! 💖</p>
+                    <button class="play-btn multi-play" data-target="audio4">▶</button>
+                    <audio id="audio4" src="audio/4.mp3"></audio>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="fade-in delay-9">
+        <p>Made By Kuku ❤, for you.</p>
+    </footer>
+
+    <script>
+        // Logic for opening the surprise box
+        const boxCover = document.getElementById('box-cover');
+        const surpriseBox = document.getElementById('surprise-box');
+
+        boxCover.addEventListener('click', () => {
+            surpriseBox.classList.add('opened');
+        });
+
+        // Logic for playing multiple audio files safely
+        const playButtons = document.querySelectorAll('.multi-play');
+        const allAudios = document.querySelectorAll('audio');
+
+        playButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.getAttribute('data-target');
+                const targetAudio = document.getElementById(targetId);
+
+                // If clicking play on a paused audio
+                if (targetAudio.paused) {
+                    // 1. Pause ALL other audios first
+                    allAudios.forEach(audio => {
+                        audio.pause();
+                    });
+                    
+                    // 2. Reset ALL buttons back to play icon
+                    playButtons.forEach(button => {
+                        button.innerHTML = '▶';
+                        button.classList.remove('playing');
+                    });
+
+                    // 3. Play the targeted audio
+                    targetAudio.play();
+                    btn.innerHTML = '⏸';
+                    btn.classList.add('playing');
+                } 
+                // If clicking pause on the currently playing audio
+                else {
+                    targetAudio.pause();
+                    btn.innerHTML = '▶';
+                    btn.classList.remove('playing');
+                }
+            });
+        });
+
+        // Automatically reset buttons when an audio finishes playing
+        allAudios.forEach(audio => {
+            audio.addEventListener('ended', (e) => {
+                const btn = document.querySelector(`[data-target="${e.target.id}"]`);
+                if(btn) {
+                    btn.innerHTML = '▶';
+                    btn.classList.remove('playing');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
