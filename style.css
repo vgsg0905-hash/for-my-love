@@ -120,6 +120,8 @@ h1 {
     object-fit: cover;
     display: block;
     transition: transform 0.6s ease;
+    transform: translateZ(0); 
+    will-change: transform;
 }
 
 .memory-card:hover img {
