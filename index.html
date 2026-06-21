@@ -39,7 +39,8 @@
     <main class="gallery-container">
         <div class="memory-card glass-panel fade-in delay-2">
             <div class="image-wrapper">
-                <img src="images/1.jpeg" alt="A lovely memory of us">
+                <!-- The first image loads immediately (eager) because it's at the top -->
+                <img src="images/1.jpeg" alt="A lovely memory of us" loading="eager" fetchpriority="high">
             </div>
             <div class="card-content">
                 <p>That amazing day we spent together. Your smile here means everything.</p>
@@ -48,7 +49,8 @@
 
         <div class="memory-card glass-panel fade-in delay-3">
             <div class="image-wrapper">
-                <img src="images/pic2.jpeg" alt="Another wonderful memory">
+                <!-- All other images are lazy-loaded (they wait until she scrolls down) -->
+                <img src="images/pic2.jpeg" alt="Another wonderful memory" loading="lazy" decoding="async">
             </div>
             <div class="card-content">
                 <p>Hyee Kitni Pyari Laggri hai Meri choti Baby 😘</p>
@@ -57,7 +59,7 @@
 
         <div class="memory-card glass-panel fade-in delay-4">
             <div class="image-wrapper">
-                <img src="images/pic3.jpeg" alt="A beautiful moment">
+                <img src="images/pic3.jpeg" alt="A beautiful moment" loading="lazy" decoding="async">
             </div>
             <div class="card-content">
                 <p>One of my absolute favorite pictures of you. You light up my world.</p>
@@ -66,7 +68,7 @@
 
         <div class="memory-card glass-panel fade-in delay-5">
             <div class="image-wrapper">
-                <img src="images/pic4.jpeg" alt="Adventures together">
+                <img src="images/pic4.jpeg" alt="Adventures together" loading="lazy" decoding="async">
             </div>
             <div class="card-content">
                 <p>Every adventure with you is my favorite adventure. Can't wait for more.</p>
@@ -75,7 +77,7 @@
 
         <div class="memory-card glass-panel fade-in delay-6">
             <div class="image-wrapper">
-                <img src="images/pic5.jpg" alt="Just us">
+                <img src="images/pic5.jpg" alt="Just us" loading="lazy" decoding="async">
             </div>
             <div class="card-content">
                 <p>Mann Krta Hai in Gore Gore galo Parr Kissi kr du 💋💋😁</p>
