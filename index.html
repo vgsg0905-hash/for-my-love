@@ -4,10 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For You ❤️</title>
+    <link href="[https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap](https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap)" rel="stylesheet">
+    <!-- Link to your separate CSS file -->
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <!-- VIRTUAL LOCK SCREEN -->
+    <div id="lock-screen">
+        <div class="lock-header">
+            <h1 class="lock-time" id="lock-time">12:00</h1>
+            <p class="lock-date" id="lock-date">Monday, January 1</p>
+        </div>
+        <div class="lock-hint">
+            <div class="swipe-arrows">
+                <span>^</span>
+                <span>^</span>
+            </div>
+            <p>Swipe up to unlock my heart</p>
+        </div>
+    </div>
 
     <!-- Animated Background Elements -->
     <div class="floating-hearts">
@@ -37,9 +53,10 @@
     </header>
 
     <main class="gallery-container">
+        <!-- Lazy loading added to images to fix mobile speed -->
         <div class="memory-card glass-panel fade-in delay-2">
             <div class="image-wrapper">
-                <img src="images/1.jpeg" alt="A lovely memory of us">
+                <img src="./images/1.jpeg" alt="A lovely memory of us" loading="eager" fetchpriority="high">
             </div>
             <div class="card-content">
                 <p>That amazing day we spent together. Your smile here means everything.</p>
@@ -48,7 +65,7 @@
 
         <div class="memory-card glass-panel fade-in delay-3">
             <div class="image-wrapper">
-                <img src="images/pic2.jpeg" alt="Another wonderful memory">
+                <img src="./images/2.jpeg" alt="Another wonderful memory" loading="lazy" decoding="async">
             </div>
             <div class="card-content">
                 <p>Hyee Kitni Pyari Laggri hai Meri choti Baby 😘</p>
@@ -57,7 +74,7 @@
 
         <div class="memory-card glass-panel fade-in delay-4">
             <div class="image-wrapper">
-                <img src="images/pic3.jpeg" alt="A beautiful moment">
+                <img src="./images/pic3.jpeg" alt="A beautiful moment" loading="lazy" decoding="async">
             </div>
             <div class="card-content">
                 <p>One of my absolute favorite pictures of you. You light up my world.</p>
@@ -66,7 +83,7 @@
 
         <div class="memory-card glass-panel fade-in delay-5">
             <div class="image-wrapper">
-                <img src="images/pic4.jpeg" alt="Adventures together">
+                <img src="./images/pic4.jpeg" alt="Adventures together" loading="lazy" decoding="async">
             </div>
             <div class="card-content">
                 <p>Every adventure with you is my favorite adventure. Can't wait for more.</p>
@@ -75,7 +92,7 @@
 
         <div class="memory-card glass-panel fade-in delay-6">
             <div class="image-wrapper">
-                <img src="images/pic5.jpg" alt="Just us">
+                <img src="./images/pic5.jpg" alt="Just us" loading="lazy" decoding="async">
             </div>
             <div class="card-content">
                 <p>Mann Krta Hai in Gore Gore galo Parr Kissi kr du 💋💋😁</p>
@@ -95,7 +112,6 @@
 
     <div class="divider fade-in delay-8">❦</div>
 
-    <!-- SURPRISE BOX SECTION -->
     <section class="surprise-section fade-in delay-8">
         <h2>A Little Surprise...</h2>
         
@@ -112,25 +128,25 @@
                 <div class="audio-item">
                     <p>My Feelings for Pyara Baccha ❤</p>
                     <button class="play-btn multi-play" data-target="audio1">▶</button>
-                    <audio id="audio1" src="audio/1.mp3"></audio>
+                    <audio id="audio1" src="./audio/1.mp3"></audio>
                 </div>
 
                 <div class="audio-item">
                     <p>A random thought about us ❤️</p>
                     <button class="play-btn multi-play" data-target="audio2">▶</button>
-                    <audio id="audio2" src="audio/2.mp3"></audio>
+                    <audio id="audio2" src="./audio/2.mp3"></audio>
                 </div>
 
                 <div class="audio-item">
                     <p>Mera chota Suar 💕</p>
                     <button class="play-btn multi-play" data-target="audio3">▶</button>
-                    <audio id="audio3" src="audio/3.mp3"></audio>
+                    <audio id="audio3" src="./audio/3.mp3"></audio>
                 </div>
 
                 <div class="audio-item">
                     <p>I Love You So Much! 💖</p>
                     <button class="play-btn multi-play" data-target="audio4">▶</button>
-                    <audio id="audio4" src="audio/4.mp3"></audio>
+                    <audio id="audio4" src="./audio/4.mp3"></audio>
                 </div>
             </div>
         </div>
@@ -141,7 +157,57 @@
     </footer>
 
     <script>
-        // Logic for opening the surprise box
+        // =========================================
+        // VIRTUAL LOCK SCREEN LOGIC
+        // =========================================
+        const lockScreen = document.getElementById('lock-screen');
+        const lockTime = document.getElementById('lock-time');
+        const lockDate = document.getElementById('lock-date');
+
+        // Prevent scrolling while the screen is locked
+        document.body.style.overflow = 'hidden';
+
+        // Set the live clock
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            hours = hours % 12 || 12; // 12-hour format
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            lockTime.innerText = `${hours}:${minutes}`;
+            
+            const options = { weekday: 'long', month: 'long', day: 'numeric' };
+            lockDate.innerText = now.toLocaleDateString('en-US', options);
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Detect Swiping up (Touch & Mouse support)
+        let startY = 0;
+
+        function handleTouchStart(e) {
+            startY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
+        }
+
+        function handleTouchEnd(e) {
+            const endY = e.type.includes('mouse') ? e.clientY : e.changedTouches[0].clientY;
+            const swipeDistance = startY - endY;
+            
+            // If swiped UP by more than 50 pixels
+            if (swipeDistance > 50) {
+                lockScreen.classList.add('unlocked');
+                document.body.style.overflow = ''; // Re-enable scrolling
+            }
+        }
+
+        lockScreen.addEventListener('touchstart', handleTouchStart);
+        lockScreen.addEventListener('touchend', handleTouchEnd);
+        lockScreen.addEventListener('mousedown', handleTouchStart);
+        lockScreen.addEventListener('mouseup', handleTouchEnd);
+
+        // =========================================
+        // SURPRISE BOX & AUDIO LOGIC
+        // =========================================
         const boxCover = document.getElementById('box-cover');
         const surpriseBox = document.getElementById('surprise-box');
 
@@ -149,7 +215,6 @@
             surpriseBox.classList.add('opened');
         });
 
-        // Logic for playing multiple audio files safely
         const playButtons = document.querySelectorAll('.multi-play');
         const allAudios = document.querySelectorAll('audio');
 
@@ -158,25 +223,20 @@
                 const targetId = btn.getAttribute('data-target');
                 const targetAudio = document.getElementById(targetId);
 
-                // If clicking play on a paused audio
                 if (targetAudio.paused) {
-                    // 1. Pause ALL other audios first
                     allAudios.forEach(audio => {
                         audio.pause();
                     });
                     
-                    // 2. Reset ALL buttons back to play icon
                     playButtons.forEach(button => {
                         button.innerHTML = '▶';
                         button.classList.remove('playing');
                     });
 
-                    // 3. Play the targeted audio
                     targetAudio.play();
                     btn.innerHTML = '⏸';
                     btn.classList.add('playing');
                 } 
-                // If clicking pause on the currently playing audio
                 else {
                     targetAudio.pause();
                     btn.innerHTML = '▶';
@@ -185,7 +245,6 @@
             });
         });
 
-        // Automatically reset buttons when an audio finishes playing
         allAudios.forEach(audio => {
             audio.addEventListener('ended', (e) => {
                 const btn = document.querySelector(`[data-target="${e.target.id}"]`);
